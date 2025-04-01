@@ -68,9 +68,9 @@ router = APIRouter()
 )
 async def register_user(
         user_data: UserRegistrationRequestSchema,
+        background_tasks: BackgroundTasks,
         db: AsyncSession = Depends(get_db),
         email_sender: EmailSenderInterface = Depends(get_accounts_email_notificator),
-        background_tasks: BackgroundTasks = Depends(),
 ) -> UserRegistrationResponseSchema:
     """
     Endpoint for user registration.
@@ -174,9 +174,9 @@ async def register_user(
 )
 async def activate_account(
         activation_data: UserActivationRequestSchema,
+        background_tasks: BackgroundTasks,
         db: AsyncSession = Depends(get_db),
         email_sender: EmailSenderInterface = Depends(get_accounts_email_notificator),
-        background_tasks: BackgroundTasks = Depends(),
 ) -> MessageResponseSchema:
     """
     Endpoint to activate a user's account.
@@ -254,9 +254,9 @@ async def activate_account(
 )
 async def request_password_reset_token(
         data: PasswordResetRequestSchema,
+        background_tasks: BackgroundTasks,
         db: AsyncSession = Depends(get_db),
         email_sender: EmailSenderInterface = Depends(get_accounts_email_notificator),
-        background_tasks: BackgroundTasks = Depends(),
 ) -> MessageResponseSchema:
     """
     Endpoint to request a password reset token.
@@ -344,9 +344,9 @@ async def request_password_reset_token(
 )
 async def reset_password(
         data: PasswordResetCompleteRequestSchema,
+        background_tasks: BackgroundTasks,
         db: AsyncSession = Depends(get_db),
         email_sender: EmailSenderInterface = Depends(get_accounts_email_notificator),
-        background_tasks: BackgroundTasks = Depends(),
 ) -> MessageResponseSchema:
     """
     Endpoint for resetting a user's password.
